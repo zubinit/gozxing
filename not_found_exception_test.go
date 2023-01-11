@@ -8,6 +8,7 @@ import (
 	errors "golang.org/x/xerrors"
 )
 
+// test
 func testNotFoundExceptionType(t testing.TB, e error) {
 	t.Helper()
 	var ne NotFoundException
