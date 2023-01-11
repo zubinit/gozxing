@@ -1,4 +1,4 @@
-module github.com/makiuchi-d/gozxing
+module github.com/zubinit/gozxing
 
 go 1.17
 
