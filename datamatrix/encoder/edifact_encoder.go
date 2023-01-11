@@ -1,7 +1,7 @@
 package encoder
 
 import (
-	"github.com/makiuchi-d/gozxing"
+	"github.com/zubinit/gozxing"
 )
 
 type EdifactEncoder struct{}
@@ -48,7 +48,6 @@ func (this EdifactEncoder) encode(context *EncoderContext) error {
 //
 // params: context the encoder context
 // params: buffer  the buffer with the remaining encoded characters
-//
 func edifactHandleEOD(context *EncoderContext, buffer []byte) error {
 	defer context.SignalEncoderChange(HighLevelEncoder_ASCII_ENCODATION)
 

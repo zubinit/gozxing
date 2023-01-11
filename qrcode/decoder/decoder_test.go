@@ -3,9 +3,9 @@ package decoder
 import (
 	"testing"
 
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/common"
-	"github.com/makiuchi-d/gozxing/testutil"
+	"github.com/zubinit/gozxing"
+	"github.com/zubinit/gozxing/common"
+	"github.com/zubinit/gozxing/testutil"
 )
 
 func unsetRegion(image *gozxing.BitMatrix, x, y, w, h int) {

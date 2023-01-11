@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/makiuchi-d/gozxing"
+	"github.com/zubinit/gozxing"
 )
 
 func TestEAN8Writer_encode(t *testing.T) {

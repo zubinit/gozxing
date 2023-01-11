@@ -3,11 +3,11 @@ package qrcode
 import (
 	"strconv"
 
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/common"
-	"github.com/makiuchi-d/gozxing/common/util"
-	"github.com/makiuchi-d/gozxing/qrcode/decoder"
-	"github.com/makiuchi-d/gozxing/qrcode/detector"
+	"github.com/zubinit/gozxing"
+	"github.com/zubinit/gozxing/common"
+	"github.com/zubinit/gozxing/common/util"
+	"github.com/zubinit/gozxing/qrcode/decoder"
+	"github.com/zubinit/gozxing/qrcode/detector"
 )
 
 type QRCodeReader struct {

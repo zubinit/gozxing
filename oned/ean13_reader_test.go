@@ -3,8 +3,8 @@ package oned
 import (
 	"testing"
 
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/testutil"
+	"github.com/zubinit/gozxing"
+	"github.com/zubinit/gozxing/testutil"
 )
 
 func testEan13Reader_determineFirstDigit(t testing.TB, p int, expect byte) {

@@ -3,10 +3,10 @@ package datamatrix
 import (
 	"testing"
 
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/datamatrix/encoder"
-	qrencoder "github.com/makiuchi-d/gozxing/qrcode/encoder"
-	"github.com/makiuchi-d/gozxing/testutil"
+	"github.com/zubinit/gozxing"
+	"github.com/zubinit/gozxing/datamatrix/encoder"
+	qrencoder "github.com/zubinit/gozxing/qrcode/encoder"
+	"github.com/zubinit/gozxing/testutil"
 )
 
 func TestConvertByteMatrixToBitMatrix(t *testing.T) {

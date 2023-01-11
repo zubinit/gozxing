@@ -1,8 +1,8 @@
 package detector
 
 import (
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/common/util"
+	"github.com/zubinit/gozxing"
+	"github.com/zubinit/gozxing/common/util"
 )
 
 const (

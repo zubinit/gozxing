@@ -5,8 +5,8 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/testutil"
+	"github.com/zubinit/gozxing"
+	"github.com/zubinit/gozxing/testutil"
 )
 
 var qrstr = "" +
