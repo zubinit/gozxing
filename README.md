@@ -1,4 +1,4 @@
-# gozxing A Barcode Scanning/Encoding Library for Go
+# gozxing Fork A Barcode Scanning/Encoding Library for Go
 
 [![Build Status](https://github.com/zubinit/gozxing/actions/workflows/main.yml/badge.svg)](https://github.com/zubinit/gozxing/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/makiuchi-d/gozxing/branch/master/graph/badge.svg)](https://codecov.io/gh/makiuchi-d/gozxing)
