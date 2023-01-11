@@ -28,7 +28,7 @@ func (rp ResultPointBase) GetY() float64 {
 
 // Orders an array of three ResultPoints in an order [A,B,C] such that AB is less than AC
 // and BC is less than AC, and the angle between BC and BA is less than 180 degrees.
-// @param patterns array of three {@code ResultPoint} to order
+// params: patterns array of three {@code ResultPoint} to order
 func ResultPoint_OrderBestPatterns(pattern0, pattern1, pattern2 ResultPoint) (pointA, pointB, pointC ResultPoint) {
 	// Find distances between pattern centers
 	zeroOneDistance := ResultPoint_Distance(pattern0, pattern1)

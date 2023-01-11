@@ -117,8 +117,8 @@ func (this *upcEReader) getBarcodeFormat() gozxing.BarcodeFormat {
 
 // convertUPCEtoUPCA Expands a UPC-E value back into its full, equivalent UPC-A code value.
 //
-// @param upce UPC-E code as string of digits
-// @return equivalent UPC-A code as string of digits
+// params: upce UPC-E code as string of digits
+// return: equivalent UPC-A code as string of digits
 //
 func convertUPCEtoUPCA(upce string) string {
 	upceChars := upce[1:7]

@@ -30,11 +30,11 @@ func NewWhiteRectangleDetectorFromImage(image *gozxing.BitMatrix) (*WhiteRectang
 }
 
 // NewWhiteRectangleDetector new WhiteRectangleDetector
-// @param image barcode image to find a rectangle in
-// @param initSize initial size of search area around center
-// @param x x position of search center
-// @param y y position of search center
-// @throws NotFoundException if image is too small to accommodate {@code initSize}
+// params: image barcode image to find a rectangle in
+// params: initSize initial size of search area around center
+// params: x x position of search center
+// params: y y position of search center
+// throws NotFoundException if image is too small to accommodate {@code initSize}
 func NewWhiteRectangleDetector(image *gozxing.BitMatrix, initSize, x, y int) (*WhiteRectangleDetector, error) {
 	halfsize := initSize / 2
 	d := &WhiteRectangleDetector{
@@ -56,13 +56,14 @@ func NewWhiteRectangleDetector(image *gozxing.BitMatrix, initSize, x, y int) (*W
 // It starts around the center of the image, increases the size of the candidate
 // region until it finds a white rectangular region.
 //
-// @return {@link ResultPoint}[] describing the corners of the rectangular
-//         region. The first and last points are opposed on the diagonal, as
-//         are the second and third. The first point will be the topmost
-//         point and the last, the bottommost. The second point will be
-//         leftmost and the third, the rightmost
-// @throws NotFoundException if no Data Matrix Code can be found
+// return: {@link ResultPoint}[] describing the corners of the rectangular
 //
+//	region. The first and last points are opposed on the diagonal, as
+//	are the second and third. The first point will be the topmost
+//	point and the last, the bottommost. The second point will be
+//	leftmost and the third, the rightmost
+//
+// throws NotFoundException if no Data Matrix Code can be found
 func (this *WhiteRectangleDetector) Detect() ([]gozxing.ResultPoint, error) {
 	left := this.leftInit
 	right := this.rightInit
@@ -228,16 +229,16 @@ func (this *WhiteRectangleDetector) getBlackPointOnSegment(aX, aY, bX, bY int) g
 
 // centerEdges recenters the points of a constant distance towards the center
 //
-// @param y bottom most point
-// @param z left most point
-// @param x right most point
-// @param t top most point
-// @return {@link ResultPoint}[] describing the corners of the rectangular
-//         region. The first and last points are opposed on the diagonal, as
-//         are the second and third. The first point will be the topmost
-//         point and the last, the bottommost. The second point will be
-//         leftmost and the third, the rightmost
+// params: y bottom most point
+// params: z left most point
+// params: x right most point
+// params: t top most point
+// return: {@link ResultPoint}[] describing the corners of the rectangular
 //
+//	region. The first and last points are opposed on the diagonal, as
+//	are the second and third. The first point will be the topmost
+//	point and the last, the bottommost. The second point will be
+//	leftmost and the third, the rightmost
 func (this *WhiteRectangleDetector) centerEdges(y, z, x, t gozxing.ResultPoint) []gozxing.ResultPoint {
 
 	//
@@ -275,12 +276,11 @@ func (this *WhiteRectangleDetector) centerEdges(y, z, x, t gozxing.ResultPoint) 
 
 // containsBlackPoint Determines whether a segment contains a black point
 //
-// @param a          min value of the scanned coordinate
-// @param b          max value of the scanned coordinate
-// @param fixed      value of fixed coordinate
-// @param horizontal set to true if scan must be horizontal, false if vertical
-// @return true if a black point has been found, else false.
-//
+// params: a          min value of the scanned coordinate
+// params: b          max value of the scanned coordinate
+// params: fixed      value of fixed coordinate
+// params: horizontal set to true if scan must be horizontal, false if vertical
+// return: true if a black point has been found, else false.
 func (this *WhiteRectangleDetector) containsBlackPoint(a, b, fixed int, horizontal bool) bool {
 
 	if horizontal {

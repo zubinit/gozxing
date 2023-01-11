@@ -17,7 +17,6 @@ import (
 // QR code locations in the image.
 //
 // Use the TRY_HARDER hint to ask for a more thorough detection.
-//
 type MultiFinderPatternFinder struct {
 	*detector.FinderPatternFinder
 }
@@ -57,8 +56,7 @@ func ModuleSizeComparator(possibleCenters []*detector.FinderPattern) func(int, i
 
 // NewMultiFinderPatternFinder Creates a finder that will search the image for three finder patterns.
 //
-// @param image image to search
-//
+// params: image image to search
 func NewMultiFinderPatternFinder(image *gozxing.BitMatrix, resultPointCallback gozxing.ResultPointCallback) *MultiFinderPatternFinder {
 	return &MultiFinderPatternFinder{
 		detector.NewFinderPatternFinder(image, resultPointCallback),
@@ -66,10 +64,12 @@ func NewMultiFinderPatternFinder(image *gozxing.BitMatrix, resultPointCallback g
 }
 
 // selectMultipleBestPatterns select the best patterns.
-// @return the 3 best {@link FinderPattern}s from our list of candidates. The "best" are
-//         those that have been detected at least 2 times, and whose module
-//         size differs from the average among those patterns the least
-// @throws NotFoundException if 3 such finder patterns do not exist
+// return: the 3 best {@link FinderPattern}s from our list of candidates. The "best" are
+//
+//	those that have been detected at least 2 times, and whose module
+//	size differs from the average among those patterns the least
+//
+// throws NotFoundException if 3 such finder patterns do not exist
 func (this *MultiFinderPatternFinder) selectMultipleBestPatterns() ([][]*detector.FinderPattern, error) {
 	possibleCenters := this.GetPossibleCenters()
 	size := len(possibleCenters)

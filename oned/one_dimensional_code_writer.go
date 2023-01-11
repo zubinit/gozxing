@@ -10,15 +10,15 @@ type encoder interface {
 	// encodeWithoutHint Encode the contents to boolean array expression of one-dimensional barcode.
 	// Start code and end code should be included in result, and side margins should not be included.
 	//
-	// @param contents barcode contents to encode
-	// @return a {@code boolean[]} of horizontal pixels (false = white, true = black)
+	// params: contents barcode contents to encode
+	// return: a {@code boolean[]} of horizontal pixels (false = white, true = black)
 	//
 	encode(contents string) ([]bool, error)
 
 	// Can be overwritten if the encode requires to read the hints map. Otherwise it defaults to {@code encode}.
-	// @param contents barcode contents to encode
-	// @param hints encoding hints
-	// @return a {@code boolean[]} of horizontal pixels (false = white, true = black)
+	// params: contents barcode contents to encode
+	// params: hints encoding hints
+	// return: a {@code boolean[]} of horizontal pixels (false = white, true = black)
 	//
 	encodeWithHints(contents string, hints map[gozxing.EncodeHintType]interface{}) ([]bool, error)
 
@@ -88,7 +88,7 @@ func (this *OneDimensionalCodeWriter) Encode(
 	return onedWriter_renderResult(code, width, height, sidesMargin)
 }
 
-// onedWriter_renderResult @return a byte array of horizontal pixels (0 = white, 1 = black)
+// onedWriter_renderResult return: a byte array of horizontal pixels (0 = white, 1 = black)
 func onedWriter_renderResult(code []bool, width, height, sidesMargin int) (*gozxing.BitMatrix, error) {
 	inputWidth := len(code)
 	// Add quiet zone on both sides.
@@ -123,11 +123,11 @@ func onedWriter_checkNumeric(contents string) error {
 }
 
 // onedWriter_appendPattern append pattern
-// @param target encode black/white pattern into this array
-// @param pos position to start encoding at in {@code target}
-// @param pattern lengths of black/white runs to encode
-// @param startColor starting color - false for white, true for black
-// @return the number of elements added to target.
+// params: target encode black/white pattern into this array
+// params: pos position to start encoding at in {@code target}
+// params: pattern lengths of black/white runs to encode
+// params: startColor starting color - false for white, true for black
+// return: the number of elements added to target.
 func onedWriter_appendPattern(target []bool, pos int, pattern []int, startColor bool) int {
 	color := startColor
 	numAdded := 0

@@ -75,8 +75,8 @@ func RSSReader_parseFinderValue(counters []int, finderPatterns [][]int) (int, er
 }
 
 // /**
-//  * @param array values to sum
-//  * @return sum of values
+//  * params: array values to sum
+//  * return: sum of values
 //  * @deprecated call {@link MathUtils#sum(int[])}
 //  */
 // @Deprecated

@@ -46,8 +46,8 @@ func (this EdifactEncoder) encode(context *EncoderContext) error {
 
 // edifactHandleEOD Handle "end of data" situations
 //
-// @param context the encoder context
-// @param buffer  the buffer with the remaining encoded characters
+// params: context the encoder context
+// params: buffer  the buffer with the remaining encoded characters
 //
 func edifactHandleEOD(context *EncoderContext, buffer []byte) error {
 	defer context.SignalEncoderChange(HighLevelEncoder_ASCII_ENCODATION)

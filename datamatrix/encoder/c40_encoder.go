@@ -84,8 +84,8 @@ func c40WriteNextTriplet(context *EncoderContext, buffer []byte) []byte {
 
 // HandleEOD Handle "end of data" situations
 //
-// @param context the encoder context
-// @param buffer  the buffer with the remaining encoded characters
+// params: context the encoder context
+// params: buffer  the buffer with the remaining encoded characters
 //
 func c40HandleEOD(context *EncoderContext, buffer []byte) error {
 	unwritten := (len(buffer) / 3) * 2

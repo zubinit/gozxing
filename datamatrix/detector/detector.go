@@ -21,9 +21,8 @@ func NewDetector(image *gozxing.BitMatrix) (*Detector, error) {
 
 // Detect Detects a Data Matrix Code in an image.
 //
-// @return {@link DetectorResult} encapsulating results of detecting a Data Matrix Code
-// @throws NotFoundException if no Data Matrix Code can be found
-//
+// return: {@link DetectorResult} encapsulating results of detecting a Data Matrix Code
+// throws NotFoundException if no Data Matrix Code can be found
 func (this *Detector) Detect() (*common.DetectorResult, error) {
 
 	cornerPoints, e := this.rectangleDetector.Detect()

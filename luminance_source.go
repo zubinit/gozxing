@@ -12,10 +12,10 @@ type LuminanceSource interface {
 	 * to only fetch this row rather than the whole image, since no 2D Readers may be installed and
 	 * getMatrix() may never be called.
 	 *
-	 * @param y The row to fetch, which must be in [0,getHeight())
-	 * @param row An optional preallocated array. If null or too small, it will be ignored.
+	 * params: y The row to fetch, which must be in [0,getHeight())
+	 * params: row An optional preallocated array. If null or too small, it will be ignored.
 	 *            Always use the returned object, and ignore the .length of the array.
-	 * @return An array containing the luminance data.
+	 * return: An array containing the luminance data.
 	 */
 	GetRow(y int, row []byte) ([]byte, error)
 
@@ -23,24 +23,24 @@ type LuminanceSource interface {
 	 * Fetches luminance data for the underlying bitmap. Values should be fetched using:
 	 * {@code int luminance = array[y * width + x] & 0xff}
 	 *
-	 * @return A row-major 2D array of luminance values. Do not use result.length as it may be
+	 * return: A row-major 2D array of luminance values. Do not use result.length as it may be
 	 *         larger than width * height bytes on some platforms. Do not modify the contents
 	 *         of the result.
 	 */
 	GetMatrix() []byte
 
 	/**
-	 * @return The width of the bitmap.
+	 * return: The width of the bitmap.
 	 */
 	GetWidth() int
 
 	/**
-	 * @return The height of the bitmap.
+	 * return: The height of the bitmap.
 	 */
 	GetHeight() int
 
 	/**
-	 * @return Whether this subclass supports cropping.
+	 * return: Whether this subclass supports cropping.
 	 */
 	IsCropSupported() bool
 
@@ -48,21 +48,21 @@ type LuminanceSource interface {
 	 * Returns a new object with cropped image data. Implementations may keep a reference to the
 	 * original data rather than a copy. Only callable if isCropSupported() is true.
 	 *
-	 * @param left The left coordinate, which must be in [0,getWidth())
-	 * @param top The top coordinate, which must be in [0,getHeight())
-	 * @param width The width of the rectangle to crop.
-	 * @param height The height of the rectangle to crop.
-	 * @return A cropped version of this object.
+	 * params: left The left coordinate, which must be in [0,getWidth())
+	 * params: top The top coordinate, which must be in [0,getHeight())
+	 * params: width The width of the rectangle to crop.
+	 * params: height The height of the rectangle to crop.
+	 * return: A cropped version of this object.
 	 */
 	Crop(left, top, width, height int) (LuminanceSource, error)
 
 	/**
-	 * @return Whether this subclass supports counter-clockwise rotation.
+	 * return: Whether this subclass supports counter-clockwise rotation.
 	 */
 	IsRotateSupported() bool
 
 	/**
-	 * @return a wrapper of this {@code LuminanceSource} which inverts the luminances it returns -- black becomes
+	 * return: a wrapper of this {@code LuminanceSource} which inverts the luminances it returns -- black becomes
 	 *  white and vice versa, and each value becomes (255-value).
 	 */
 	Invert() LuminanceSource
@@ -71,7 +71,7 @@ type LuminanceSource interface {
 	 * Returns a new object with rotated image data by 90 degrees counterclockwise.
 	 * Only callable if {@link #isRotateSupported()} is true.
 	 *
-	 * @return A rotated version of this object.
+	 * return: A rotated version of this object.
 	 */
 	RotateCounterClockwise() (LuminanceSource, error)
 
@@ -79,7 +79,7 @@ type LuminanceSource interface {
 	 * Returns a new object with rotated image data by 45 degrees counterclockwise.
 	 * Only callable if {@link #isRotateSupported()} is true.
 	 *
-	 * @return A rotated version of this object.
+	 * return: A rotated version of this object.
 	 */
 	RotateCounterClockwise45() (LuminanceSource, error)
 

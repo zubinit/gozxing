@@ -59,25 +59,25 @@ type upceanRowDecoder interface {
 	RowDecoder
 
 	// getBarcodeFormat Get the format of this decoder.
-	// @return The 1D format.
+	// return: The 1D format.
 	getBarcodeFormat() gozxing.BarcodeFormat
 
 	// decodeMiddle Subclasses override this to decode the portion of a barcode between the start
 	// and end guard patterns.
 	//
-	// @param row row of black/white values to search
-	// @param startRange start/end offset of start guard pattern
-	// @param resultString {@link StringBuilder} to append decoded chars to
-	// @return horizontal offset of first pixel after the "middle" that was decoded
-	// @throws NotFoundException if decoding could not complete successfully
+	// params: row row of black/white values to search
+	// params: startRange start/end offset of start guard pattern
+	// params: resultString {@link StringBuilder} to append decoded chars to
+	// return: horizontal offset of first pixel after the "middle" that was decoded
+	// throws NotFoundException if decoding could not complete successfully
 	decodeMiddle(row *gozxing.BitArray, startRange []int, result []byte) (int, []byte, error)
 
 	decodeEnd(row *gozxing.BitArray, endStart int) ([]int, error)
 
 	// checkChecksum Check checksum
-	// @param s string of digits to check
-	// @return {@link #checkStandardUPCEANChecksum(CharSequence)}
-	// @throws FormatException if the string does not contain only digits
+	// params: s string of digits to check
+	// return: {@link #checkStandardUPCEANChecksum(CharSequence)}
+	// throws FormatException if the string does not contain only digits
 	checkChecksum(s string) (bool, error)
 }
 
@@ -138,14 +138,14 @@ func (this *upceanReader) DecodeRow(rowNumber int, row *gozxing.BitArray, hints 
 // allows caller to inform method about where the UPC/EAN start pattern is
 // found. This allows this to be computed once and reused across many implementations.</p>
 //
-// @param rowNumber row index into the image
-// @param row encoding of the row of the barcode image
-// @param startGuardRange start/end column where the opening start pattern was found
-// @param hints optional hints that influence decoding
-// @return {@link Result} encapsulating the result of decoding a barcode in the row
-// @throws NotFoundException if no potential barcode is found
-// @throws ChecksumException if a potential barcode is found but does not pass its checksum
-// @throws FormatException if a potential barcode is found but format is invalid
+// params: rowNumber row index into the image
+// params: row encoding of the row of the barcode image
+// params: startGuardRange start/end column where the opening start pattern was found
+// params: hints optional hints that influence decoding
+// return: {@link Result} encapsulating the result of decoding a barcode in the row
+// throws NotFoundException if no potential barcode is found
+// throws ChecksumException if a potential barcode is found but does not pass its checksum
+// throws FormatException if a potential barcode is found but format is invalid
 func (this *upceanReader) decodeRowWithStartRange(
 	rowNumber int, row *gozxing.BitArray, startGuardRange []int,
 	hints map[gozxing.DecodeHintType]interface{}) (*gozxing.Result, error) {
@@ -269,9 +269,9 @@ func (this *upceanReader) decodeRowWithStartRange(
 }
 
 // checkChecksum Check checksum
-// @param s string of digits to check
-// @return {@link #checkStandardUPCEANChecksum(CharSequence)}
-// @throws FormatException if the string does not contain only digits
+// params: s string of digits to check
+// return: {@link #checkStandardUPCEANChecksum(CharSequence)}
+// throws FormatException if the string does not contain only digits
 func upceanReader_checkChecksum(s string) (bool, error) {
 	return upceanReader_checkStandardUPCEANChecksum(s)
 }
@@ -279,9 +279,9 @@ func upceanReader_checkChecksum(s string) (bool, error) {
 // checkStandardUPCEANChecksum Computes the UPC/EAN checksum on a string of digits,
 // and reports whether the checksum is correct or not.
 //
-// @param s string of digits to check
-/// @return true iff string of digits passes the UPC/EAN checksum algorithm
-// @throws FormatException if the string does not contain only digits
+// params: s string of digits to check
+// / return: true iff string of digits passes the UPC/EAN checksum algorithm
+// throws FormatException if the string does not contain only digits
 func upceanReader_checkStandardUPCEANChecksum(s string) (bool, error) {
 	length := len(s)
 	if length == 0 {
@@ -326,15 +326,15 @@ func upceanReader_findGuardPattern(row *gozxing.BitArray, rowOffset int, whiteFi
 }
 
 // UPCEANReader_findGuardPatternWithCounters Find guard pattern
-// @param row row of black/white values to search
-// @param rowOffset position to start search
-// @param whiteFirst if true, indicates that the pattern specifies white/black/white/...
+// params: row row of black/white values to search
+// params: rowOffset position to start search
+// params: whiteFirst if true, indicates that the pattern specifies white/black/white/...
 // pixel counts, otherwise, it is interpreted as black/white/black/...
-// @param pattern pattern of counts of number of black and white pixels that are being
+// params: pattern pattern of counts of number of black and white pixels that are being
 // searched for as a pattern
-// @param counters array of counters, as long as pattern, to re-use
-// @return start/end horizontal offset of guard pattern, as an array of two ints
-// @throws NotFoundException if pattern is not found
+// params: counters array of counters, as long as pattern, to re-use
+// return: start/end horizontal offset of guard pattern, as an array of two ints
+// throws NotFoundException if pattern is not found
 func upceanReader_findGuardPatternWithCounters(
 	row *gozxing.BitArray, rowOffset int, whiteFirst bool, pattern, counters []int) ([]int, error) {
 
@@ -373,14 +373,14 @@ func upceanReader_findGuardPatternWithCounters(
 
 // UPCEANReader_decodeDigit Attempts to decode a single UPC/EAN-encoded digit.
 //
-// @param row row of black/white values to decode
-// @param counters the counts of runs of observed black/white/black/... values
-// @param rowOffset horizontal offset to start decoding from
-// @param patterns the set of patterns to use to decode -- sometimes different encodings
+// params: row row of black/white values to decode
+// params: counters the counts of runs of observed black/white/black/... values
+// params: rowOffset horizontal offset to start decoding from
+// params: patterns the set of patterns to use to decode -- sometimes different encodings
 // for the digits 0-9 are used, and this indicates the encodings for 0 to 9 that should
 // be used
-// @return horizontal offset of first pixel beyond the decoded digit
-// @throws NotFoundException if digit cannot be decoded
+// return: horizontal offset of first pixel beyond the decoded digit
+// throws NotFoundException if digit cannot be decoded
 func upceanReader_decodeDigit(row *gozxing.BitArray, counters []int, rowOffset int, patterns [][]int) (int, error) {
 	e := RecordPattern(row, rowOffset, counters)
 	if e != nil {

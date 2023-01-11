@@ -209,7 +209,7 @@ func (this *codabarReader) validatePattern(start int) error {
 // setCounters Records the size of all runs of white and black pixels, starting with white.
 // This is just like recordPattern, except it records all the counters, and
 // uses our builtin "counters" member for storage.
-// @param row row to count from
+// params: row row to count from
 func (this *codabarReader) setCounters(row *gozxing.BitArray) error {
 	this.counterLength = 0
 	// Start from the first white bit.

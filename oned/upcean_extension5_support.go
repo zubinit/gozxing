@@ -120,8 +120,8 @@ func (this *UPCEANExtension5Support) determineCheckDigit(lgPatternFound int) (in
 	return 0, gozxing.NewNotFoundException()
 }
 
-// @param raw raw content of extension
-// @return formatted interpretation of raw content as a {@link Map} mapping
+// params: raw raw content of extension
+// return: formatted interpretation of raw content as a {@link Map} mapping
 //  one {@link ResultMetadataType} to appropriate value, or {@code null} if not known
 func (this *UPCEANExtension5Support) parseExtensionString(raw string) map[gozxing.ResultMetadataType]interface{} {
 	if len(raw) != 5 {

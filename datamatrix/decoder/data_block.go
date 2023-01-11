@@ -18,9 +18,9 @@ type DataBlock struct {
 // That is, the first byte of data block 1 to n is written, then the second bytes, and so on. This
 // method will separate the data into original blocks.
 //
-// @param rawCodewords bytes as read directly from the Data Matrix Code
-// @param version version of the Data Matrix Code
-// @return DataBlocks containing original bytes, "de-interleaved" from representation in the Data Matrix Code
+// params: rawCodewords bytes as read directly from the Data Matrix Code
+// params: version version of the Data Matrix Code
+// return: DataBlocks containing original bytes, "de-interleaved" from representation in the Data Matrix Code
 //
 func DataBlocks_getDataBlocks(rawCodewords []byte, version *Version) ([]DataBlock, error) {
 	// Figure out the number and size of data blocks used by this version

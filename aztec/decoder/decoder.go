@@ -88,8 +88,7 @@ func (this *Decoder) HighLevelDecode(correctedBits []bool) (string, error) {
 
 // getEncodedData Gets the string encoded in the aztec code bits
 //
-// @return the decoded string
-//
+// return: the decoded string
 func (this *Decoder) getEncodedData(correctedBits []bool) (string, error) {
 	endIndex := len(correctedBits)
 	latchTable := TableUPPER // table most recently latched to
@@ -213,7 +212,6 @@ func (this *Decoder) getEncodedData(correctedBits []bool) (string, error) {
 }
 
 // getTable gets the table corresponding to the char passed
-//
 func getTable(t byte) Table {
 	switch t {
 	case 'L':
@@ -234,9 +232,8 @@ func getTable(t byte) Table {
 
 // getCharacter Gets the character (or string) corresponding to the passed code in the given table
 //
-// @param table the table used
-// @param code the code of the character
-//
+// params: table the table used
+// params: code the code of the character
 func getCharacter(table Table, code int) (string, error) {
 	var tbl []string
 	switch table {
@@ -267,9 +264,8 @@ type correctedBitsResult struct {
 
 // correctBits Performs RS error correction on an array of bits.</p>
 //
-// @return the corrected array
-// @throws FormatException if the input contains too many errors
-//
+// return: the corrected array
+// throws FormatException if the input contains too many errors
 func (this *Decoder) correctBits(rawbits []bool) (*correctedBitsResult, error) {
 	var gf *reedsolomon.GenericGF
 	var codewordSize int
@@ -345,8 +341,7 @@ func (this *Decoder) correctBits(rawbits []bool) (*correctedBitsResult, error) {
 
 // extractBits Gets the array of bits from an Aztec Code matrix
 //
-// @return the array of bits
-//
+// return: the array of bits
 func (this *Decoder) extractBits(matrix *gozxing.BitMatrix) []bool {
 	compact := this.ddata.IsCompact()
 	layers := this.ddata.GetNbLayers()

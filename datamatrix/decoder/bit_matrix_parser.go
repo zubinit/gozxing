@@ -11,8 +11,8 @@ type BitMatrixParser struct {
 }
 
 // NewBitMatrixParser construct parser
-// @param bitMatrix {@link BitMatrix} to parse
-// @throws FormatException if dimension is < 8 or > 144 or not 0 mod 2
+// params: bitMatrix {@link BitMatrix} to parse
+// throws FormatException if dimension is < 8 or > 144 or not 0 mod 2
 func NewBitMatrixParser(bitMatrix *gozxing.BitMatrix) (*BitMatrixParser, error) {
 	dimension := bitMatrix.GetHeight()
 	if dimension < 8 || dimension > 144 || (dimension&0x01) != 0 {
@@ -41,9 +41,9 @@ func (p *BitMatrixParser) GetVersion() *Version {
 //
 // See ISO 16022:2006 Table 7 - ECC 200 symbol attributes
 //
-// @param bitMatrix Original {@link BitMatrix} including alignment patterns
-// @return {@link Version} encapsulating the Data Matrix Code's "version"
-// @throws FormatException if the dimensions of the mapping matrix are not valid
+// params: bitMatrix Original {@link BitMatrix} including alignment patterns
+// return: {@link Version} encapsulating the Data Matrix Code's "version"
+// throws FormatException if the dimensions of the mapping matrix are not valid
 // Data Matrix dimensions.
 func readVersion(bitMatrix *gozxing.BitMatrix) (*Version, error) {
 	numRows := bitMatrix.GetHeight()
@@ -55,8 +55,8 @@ func readVersion(bitMatrix *gozxing.BitMatrix) (*Version, error) {
 // in the correct order in order to reconstitute the codewords bytes contained within the
 // Data Matrix Code.
 //
-// @return bytes encoded within the Data Matrix Code
-// @throws FormatException if the exact number of bytes expected is not read
+// return: bytes encoded within the Data Matrix Code
+// throws FormatException if the exact number of bytes expected is not read
 func (p *BitMatrixParser) readCodewords() ([]byte, error) {
 
 	result := make([]byte, p.version.getTotalCodewords())
@@ -146,11 +146,11 @@ func (p *BitMatrixParser) readCodewords() ([]byte, error) {
 
 // readModule Reads a bit of the mapping matrix accounting for boundary wrapping.
 //
-// @param row Row to read in the mapping matrix
-// @param column Column to read in the mapping matrix
-// @param numRows Number of rows in the mapping matrix
-// @param numColumns Number of columns in the mapping matrix
-// @return value of the given bit in the mapping matrix
+// params: row Row to read in the mapping matrix
+// params: column Column to read in the mapping matrix
+// params: numRows Number of rows in the mapping matrix
+// params: numColumns Number of columns in the mapping matrix
+// return: value of the given bit in the mapping matrix
 func (p *BitMatrixParser) readModule(row, column, numRows, numColumns int) bool {
 	// Adjust the row and column indices based on boundary wrapping
 	if row < 0 {
@@ -172,12 +172,11 @@ func (p *BitMatrixParser) readModule(row, column, numRows, numColumns int) bool 
 //
 // See ISO 16022:2006, 5.8.1 Figure 6
 //
-// @param row Current row in the mapping matrix, anchored at the 8th bit (LSB) of the pattern
-// @param column Current column in the mapping matrix, anchored at the 8th bit (LSB) of the pattern
-// @param numRows Number of rows in the mapping matrix
-// @param numColumns Number of columns in the mapping matrix
-// @return byte from the utah shape
-//
+// params: row Current row in the mapping matrix, anchored at the 8th bit (LSB) of the pattern
+// params: column Current column in the mapping matrix, anchored at the 8th bit (LSB) of the pattern
+// params: numRows Number of rows in the mapping matrix
+// params: numColumns Number of columns in the mapping matrix
+// return: byte from the utah shape
 func (p *BitMatrixParser) readUtah(row, column, numRows, numColumns int) byte {
 	currentByte := byte(0)
 	if p.readModule(row-2, column-2, numRows, numColumns) {
@@ -218,10 +217,9 @@ func (p *BitMatrixParser) readUtah(row, column, numRows, numColumns int) byte {
 //
 // See ISO 16022:2006, Figure F.3
 //
-// @param numRows Number of rows in the mapping matrix
-// @param numColumns Number of columns in the mapping matrix
-// @return byte from the Corner condition 1
-//
+// params: numRows Number of rows in the mapping matrix
+// params: numColumns Number of columns in the mapping matrix
+// return: byte from the Corner condition 1
 func (p *BitMatrixParser) readCorner1(numRows, numColumns int) byte {
 	currentByte := byte(0)
 	if p.readModule(numRows-1, 0, numRows, numColumns) {
@@ -262,9 +260,9 @@ func (p *BitMatrixParser) readCorner1(numRows, numColumns int) byte {
 //
 // See ISO 16022:2006, Figure F.4
 //
-// @param numRows Number of rows in the mapping matrix
-// @param numColumns Number of columns in the mapping matrix
-// @return byte from the Corner condition 2
+// params: numRows Number of rows in the mapping matrix
+// params: numColumns Number of columns in the mapping matrix
+// return: byte from the Corner condition 2
 func (p *BitMatrixParser) readCorner2(numRows, numColumns int) byte {
 	currentByte := byte(0)
 	if p.readModule(numRows-3, 0, numRows, numColumns) {
@@ -305,10 +303,9 @@ func (p *BitMatrixParser) readCorner2(numRows, numColumns int) byte {
 //
 // See ISO 16022:2006, Figure F.5
 //
-// @param numRows Number of rows in the mapping matrix
-// @param numColumns Number of columns in the mapping matrix
-// @return byte from the Corner condition 3
-//
+// params: numRows Number of rows in the mapping matrix
+// params: numColumns Number of columns in the mapping matrix
+// return: byte from the Corner condition 3
 func (p *BitMatrixParser) readCorner3(numRows, numColumns int) byte {
 	currentByte := byte(0)
 	if p.readModule(numRows-1, 0, numRows, numColumns) {
@@ -349,10 +346,9 @@ func (p *BitMatrixParser) readCorner3(numRows, numColumns int) byte {
 //
 // See ISO 16022:2006, Figure F.6
 //
-// @param numRows Number of rows in the mapping matrix
-// @param numColumns Number of columns in the mapping matrix
-// @return byte from the Corner condition 4
-//
+// params: numRows Number of rows in the mapping matrix
+// params: numColumns Number of columns in the mapping matrix
+// return: byte from the Corner condition 4
 func (p *BitMatrixParser) readCorner4(numRows, numColumns int) byte {
 	currentByte := byte(0)
 	if p.readModule(numRows-3, 0, numRows, numColumns) {
@@ -391,9 +387,8 @@ func (p *BitMatrixParser) readCorner4(numRows, numColumns int) byte {
 
 // extractDataRegion Extracts the data region from a {@link BitMatrix} that contains alignment patterns.
 //
-// @param bitMatrix Original {@link BitMatrix} with alignment patterns
-// @return BitMatrix that has the alignment patterns removed
-//
+// params: bitMatrix Original {@link BitMatrix} with alignment patterns
+// return: BitMatrix that has the alignment patterns removed
 func extractDataRegion(version *Version, bitMatrix *gozxing.BitMatrix) (*gozxing.BitMatrix, error) {
 	symbolSizeRows := version.getSymbolSizeRows()
 	symbolSizeColumns := version.getSymbolSizeColumns()

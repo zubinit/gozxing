@@ -72,11 +72,10 @@ func (v *Version) getECBlocks() *ECBlocks {
 
 // getVersionForDimensions Deduces version information from Data Matrix dimensions.
 //
-// @param numRows Number of rows in modules
-// @param numColumns Number of columns in modules
-// @return Version for a Data Matrix Code of those dimensions
-// @throws FormatException if dimensions do correspond to a valid Data Matrix size
-//
+// params: numRows Number of rows in modules
+// params: numColumns Number of columns in modules
+// return: Version for a Data Matrix Code of those dimensions
+// throws FormatException if dimensions do correspond to a valid Data Matrix size
 func getVersionForDimensions(numRows, numColumns int) (*Version, error) {
 	if (numRows&0x01) != 0 || (numColumns&0x01) != 0 {
 		return nil, gozxing.NewFormatException("numRows=%v, numCols=%v", numRows, numColumns)

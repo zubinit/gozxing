@@ -79,9 +79,9 @@ func (this *DataMatrixWriter) Encode(contents string, format gozxing.BarcodeForm
 
 // encodeLowLevel Encode the given symbol info to a bit matrix.
 //
-// @param placement  The DataMatrix placement.
-// @param symbolInfo The symbol info to encode.
-// @return The bit matrix generated.
+// params: placement  The DataMatrix placement.
+// params: symbolInfo The symbol info to encode.
+// return: The bit matrix generated.
 //
 func encodeLowLevel(placement *encoder.DefaultPlacement,
 	symbolInfo *encoder.SymbolInfo, width, height int) *gozxing.BitMatrix {
@@ -136,10 +136,10 @@ func encodeLowLevel(placement *encoder.DefaultPlacement,
 
 // convertByteMatrixToBitMatrix Convert the ByteMatrix to BitMatrix.
 //
-// @param reqHeight The requested height of the image (in pixels) with the Datamatrix code
-// @param reqWidth The requested width of the image (in pixels) with the Datamatrix code
-// @param matrix The input matrix.
-// @return The output matrix.
+// params: reqHeight The requested height of the image (in pixels) with the Datamatrix code
+// params: reqWidth The requested width of the image (in pixels) with the Datamatrix code
+// params: matrix The input matrix.
+// return: The output matrix.
 //
 func convertByteMatrixToBitMatrix(matrix *qrencoder.ByteMatrix, reqWidth, reqHeight int) *gozxing.BitMatrix {
 	matrixWidth := matrix.GetWidth()

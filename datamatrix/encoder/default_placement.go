@@ -131,9 +131,9 @@ func (this *DefaultPlacement) module(row, col, pos, bit int) {
 
 // utah Places the 8 bits of a utah-shaped symbol character in ECC200.
 //
-// @param row the row
-// @param col the column
-// @param pos character position
+// params: row the row
+// params: col the column
+// params: pos character position
 func (this *DefaultPlacement) utah(row, col, pos int) {
 	this.module(row-2, col-2, pos, 1)
 	this.module(row-2, col-1, pos, 2)

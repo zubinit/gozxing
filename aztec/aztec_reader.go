@@ -25,10 +25,9 @@ func (r *AztecReader) DecodeWithoutHints(image *gozxing.BinaryBitmap) (*gozxing.
 
 // Decode : Locates and decodes a Data Matrix code in an image.
 //
-// @return a String representing the content encoded by the Data Matrix code
-// @throws NotFoundException if a Data Matrix code cannot be found
-// @throws FormatException if a Data Matrix code cannot be decoded
-//
+// return: a String representing the content encoded by the Data Matrix code
+// throws NotFoundException if a Data Matrix code cannot be found
+// throws FormatException if a Data Matrix code cannot be decoded
 func (r *AztecReader) Decode(image *gozxing.BinaryBitmap, hints map[gozxing.DecodeHintType]interface{}) (*gozxing.Result, error) {
 
 	var notFoundException error

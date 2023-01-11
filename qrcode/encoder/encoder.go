@@ -196,7 +196,7 @@ func Encoder_encode(content string, ecLevel decoder.ErrorCorrectionLevel, hints 
 }
 
 // recommendVersion  Decides the smallest version of QR code that will contain all of the provided data.
-// @throws WriterException if the data cannot fit in any version
+// throws WriterException if the data cannot fit in any version
 func recommendVersion(ecLevel decoder.ErrorCorrectionLevel, mode *decoder.Mode,
 	headerBits *gozxing.BitArray, dataBits *gozxing.BitArray) (*decoder.Version, gozxing.WriterException) {
 	// Hard part: need to know version to know how many bits length takes. But need to know how many
@@ -513,7 +513,8 @@ func appendLengthInfo(numLetters int, version *decoder.Version, mode *decoder.Mo
 }
 
 // appendBytes Append "bytes" in "mode" mode (encoding) into "bits".
-//  On success, store the result in "bits".
+//
+//	On success, store the result in "bits".
 func appendBytes(content string, mode *decoder.Mode, bits *gozxing.BitArray, encoding textencoding.Encoding) gozxing.WriterException {
 	switch mode {
 	case decoder.Mode_NUMERIC:

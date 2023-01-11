@@ -460,7 +460,7 @@ func squaredDistance(a, b *FinderPattern) float64 {
 
 // SelectBestPatterns return the 3 best {@link FinderPattern}s from our list of candidates.
 // The "best" are those have similar module size and form a shape closer to a isosceles right triangle.
-// @throws NotFoundException if 3 such finder patterns do not exist
+// throws NotFoundException if 3 such finder patterns do not exist
 func (f *FinderPatternFinder) SelectBestPatterns() ([]*FinderPattern, gozxing.NotFoundException) {
 	startSize := float64(len(f.possibleCenters))
 	if startSize < 3 {

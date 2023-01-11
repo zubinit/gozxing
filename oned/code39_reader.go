@@ -41,7 +41,7 @@ func NewCode39Reader() gozxing.Reader {
 // NewCode39ReaderWithCheckDigitFlag Creates a reader that can be configured to check the last character as a check digit.
 // It will not decoded "extended Code 39" sequences.
 //
-// @param usingCheckDigit if true, treat the last data character as a check digit, not
+// params: usingCheckDigit if true, treat the last data character as a check digit, not
 // data, and verify that the checksum passes.
 func NewCode39ReaderWithCheckDigitFlag(usingCheckDigit bool) gozxing.Reader {
 	return NewCode39ReaderWithFlags(usingCheckDigit, false)
@@ -51,9 +51,9 @@ func NewCode39ReaderWithCheckDigitFlag(usingCheckDigit bool) gozxing.Reader {
 // or optionally attempt to decode "extended Code 39" sequences that are used to encode
 // the full ASCII character set.
 //
-// @param usingCheckDigit if true, treat the last data character as a check digit, not
+// params: usingCheckDigit if true, treat the last data character as a check digit, not
 // data, and verify that the checksum passes.
-// @param extendedMode if true, will attempt to decode extended Code 39 sequences in the
+// params: extendedMode if true, will attempt to decode extended Code 39 sequences in the
 // text.
 func NewCode39ReaderWithFlags(usingCheckDigit, extendedMode bool) gozxing.Reader {
 	this := &code39Reader{

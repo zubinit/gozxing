@@ -73,9 +73,9 @@ func init() {
 
 // createECC200 Creates the ECC200 error correction for an encoded message.
 //
-// @param codewords  the codewords
-// @param symbolInfo information about the symbol to be encoded
-// @return the codewords with interleaved error correction.
+// params: codewords  the codewords
+// params: symbolInfo information about the symbol to be encoded
+// return: the codewords with interleaved error correction.
 //
 func ErrorCorrection_EncodeECC200(codewords []byte, symbolInfo *SymbolInfo) ([]byte, error) {
 	if len(codewords) != symbolInfo.GetDataCapacity() {

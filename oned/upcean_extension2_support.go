@@ -89,8 +89,8 @@ func (this *UPCEANExtension2Support) decodeMiddle(row *gozxing.BitArray, startRa
 	return rowOffset, nil
 }
 
-// @param raw raw content of extension
-// @return formatted interpretation of raw content as a {@link Map} mapping
+// params: raw raw content of extension
+// return: formatted interpretation of raw content as a {@link Map} mapping
 //  one {@link ResultMetadataType} to appropriate value, or {@code null} if not known
 func (this *UPCEANExtension2Support) parseExtensionString(raw string) map[gozxing.ResultMetadataType]interface{} {
 	if len(raw) != 2 {
